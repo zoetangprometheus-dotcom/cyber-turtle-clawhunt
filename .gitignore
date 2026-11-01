@@ -9,3 +9,7 @@ __pycache__/
 *.log
 coverage/
 dist/
+
+# Local firmware tools, downloads, binaries and credentials
+.local/
+firmware/**/secrets.h

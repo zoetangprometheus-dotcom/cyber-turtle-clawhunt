@@ -1,0 +1,191 @@
+{
+  "snapshot_date": "2026-11-01",
+  "source": "project directory outside shared repository",
+  "files": [
+    {
+      "path": "赛博龟壳_产品定位_PRD_三人分工_v3.1.md",
+      "bytes": 36571,
+      "sha256": "4e7774bc7153949bdda9e27cd3c2e56c1e4e4a158b63a19a5f9bb6fc5c753024"
+    },
+    {
+      "path": "GitHub协作交接-2026-10-31.md",
+      "bytes": 2063,
+      "sha256": "315d7856f30730743abefd499a607e8e296d28357bb7c90379f81b78fcbfd34c"
+    },
+    {
+      "path": "A-前端与内容/00-A角色任务与交付总表.md",
+      "bytes": 6709,
+      "sha256": "d221cbf5f2e9a01c93d986433c234759f65f60aa20c4c082f831b05955b07e91"
+    },
+    {
+      "path": "A-前端与内容/01-内容规范与64卦数据要求.md",
+      "bytes": 4558,
+      "sha256": "69dfa5fb8ed284edaf9a5e6f8a5c5ea07f5dca7720f2322611ec26029ed41fd3"
+    },
+    {
+      "path": "A-前端与内容/02-AI提示词与内容样例.md",
+      "bytes": 11253,
+      "sha256": "76569e9ca347ed3c67da9f4033fd0aa4f56356176563f0bae8207ab4f2487cc2"
+    },
+    {
+      "path": "A-前端与内容/03-H5流程与界面文案.md",
+      "bytes": 5315,
+      "sha256": "64226f846d19bc69203a0ced4cdfb1b22c042b51d317906a7dca7ed1376d06d0"
+    },
+    {
+      "path": "A-前端与内容/04-品牌纸签与分享卡制作说明.md",
+      "bytes": 3965,
+      "sha256": "a4711af0598ff9e25a2be8435bcc2ac8549e419eac0be8c1cc08e53ce82c300a"
+    },
+    {
+      "path": "A-前端与内容/05-跨角色对接与验收清单.md",
+      "bytes": 6619,
+      "sha256": "10ccfd0947f79d28c845e5218e7b9d257cfa67d8ae22c84ff573751987e5155e"
+    },
+    {
+      "path": "A-前端与内容/06-ai-output-schemas.json",
+      "bytes": 2684,
+      "sha256": "ab87fbeef4c0a36cdc1a224a5772f368416e83a8a930d6aa23b7d302995a55ff"
+    },
+    {
+      "path": "A-前端与内容/07-content-examples.json",
+      "bytes": 6690,
+      "sha256": "93855e8521f643cf94644b9c24e70f8afe3fc3cfd5bb129e1517dd0849fdce06"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/08-推荐选择与第二轮问题.md",
+      "bytes": 3329,
+      "sha256": "c1c5973fe3cca48601057afb2c9c51c4b988ad0931b670affbf018ce67e66d99"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/09-接口接入框架.md",
+      "bytes": 3528,
+      "sha256": "945c32fb8b62bd938a6710c4d4cc5fa39f2a99f6d0dc227535d022ef98d19fa0"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/10-验收与交接.md",
+      "bytes": 2363,
+      "sha256": "c6f2ac1ed1cd0e794c041e0814f72c4091df8d50388aece0dbe2bae2811f5644"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/11-第二轮确认与问卦历史规范.md",
+      "bytes": 5440,
+      "sha256": "658218d46299f227f494144843beaeb93b0952b97cce5f6df3f2dd9053ae7f69"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/12-前端剩余工作审查.md",
+      "bytes": 7845,
+      "sha256": "9d69615fbc81fda42bf2765850164955275643ed704280e668b30846ba24a0ce"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/13-三项前端修复验收.md",
+      "bytes": 3713,
+      "sha256": "99d53ffe42921673b632f2827b205ddc782705cf115373f240323d2ef250ee43"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/README.md",
+      "bytes": 3747,
+      "sha256": "153ab104e1768f2e8712e00178a7deff6d5823179f30e300e0963329f9143cca"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/data/64卦核对表.csv",
+      "bytes": 2706,
+      "sha256": "45669f3e1f253eb9128ca970f90bc8029c3ab57893a6335c7aff55b85c7981e7"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/data/hexagrams.json",
+      "bytes": 25575,
+      "sha256": "7e42b51e607b889237e4a431d099bbaf06e809a3d8e97c3c4098fa0f93e1d781"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/h5/app.js",
+      "bytes": 17976,
+      "sha256": "c8da3a44d0fdc331fe38d343ce4527d50630326d7466f5645ae96f025d61a841"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/h5/data.js",
+      "bytes": 26517,
+      "sha256": "2d0e1e441f8a4e6a74c5c8e4f3e39d59e4659803a452f48c84cf4c3e7a0e5c76"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/h5/history.js",
+      "bytes": 4886,
+      "sha256": "7397c0758e54bb1b59ebad83819ce103ba07d9fcc64142b6468feeb986b234d8"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/h5/index.html",
+      "bytes": 6370,
+      "sha256": "78b28bc0e2b6add5a28c2f6c01b03a990c5b059fe66ca1e9a444f5ee67e772f3"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/h5/style.css",
+      "bytes": 10312,
+      "sha256": "a01714449f00d36014d4032fd2f98c787d91b3065cffc7cf3e659e47f3c2424e"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/research/LICENSE-translation.txt",
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/research/hexagrams-source.json",
+      "bytes": 402592,
+      "sha256": "fa2f3abb4bcd2a7deb811424c7eb092d7e280637413060d01365be3d457430bb"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/research/source-manifest.json",
+      "bytes": 640,
+      "sha256": "8f88ba7c20b5207efeda354c484a05e4d083975ff654e0e85d855c35f7f7313e"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/research/trigrams-source.json",
+      "bytes": 9587,
+      "sha256": "901e35bfe19bdd00346adf6023688778467ff082c0051d0020f4d55956088431"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/research/upstream-README.md",
+      "bytes": 3565,
+      "sha256": "9e3e7a0c89d036039c02078fb3fe707cf84db5cb9631433504d2ae9778355f41"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/scripts/refresh-demo-data.py",
+      "bytes": 429,
+      "sha256": "221eedbc6df8f7000195b286722af83c64a64523229efcfc225add072ef93a43"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/calendar-focus-fixed.png",
+      "bytes": 38926,
+      "sha256": "9acb63793479bcffb6c1180d0b3f1fe1bc80a3c2808a412f7186cfb77b651b46"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/calendar-round2.png",
+      "bytes": 31042,
+      "sha256": "2b6b1c4c88cf0b81cf1b5bc423e2fd93be41bda114cdc1128839c8a6963249b7"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/check-data.py",
+      "bytes": 847,
+      "sha256": "e02e91ad4c88585c409e8f13a4b7c2798f3573a9e3b26e4cf21c95971d911e8d"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/corruption-check.html",
+      "bytes": 1173,
+      "sha256": "76fca343ee8ca8855a76f60d38834a4d6bf01ff53daf26e6e02b382c9ef3c7a8"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/h5-preview.png",
+      "bytes": 58076,
+      "sha256": "2e42418972903804ec81238f7debcf5529b0f76a6ff946918668ed0c4ff0eb97"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/history.test.cjs",
+      "bytes": 4267,
+      "sha256": "014c6c1cb557cef3a0a9c1ef1f79715d51e4d38f3d53de0bee6517775062cd6d"
+    },
+    {
+      "path": "A-前端与内容/整体框架-v0.1/tests/paper-large.png",
+      "bytes": 30844,
+      "sha256": "77f59df5f289f5eec0f037d3b16219a10c5d3d736fd4bf80c204603f76ca9ca4"
+    }
+  ]
+}
