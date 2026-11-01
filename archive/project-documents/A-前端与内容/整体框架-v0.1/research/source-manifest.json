@@ -1,0 +1,12 @@
+{
+  "retrieved": "2026-10-31",
+  "upstream": "https://github.com/jesshewitt/i-ching",
+  "revision": "main at retrieval; commit not pinned",
+  "sha256": {
+    "upstream-README.md": "9e3e7a0c89d036039c02078fb3fe707cf84db5cb9631433504d2ae9778355f41",
+    "LICENSE-translation.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "hexagrams-source.json": "fa2f3abb4bcd2a7deb811424c7eb092d7e280637413060d01365be3d457430bb",
+    "trigrams-source.json": "901e35bfe19bdd00346adf6023688778467ff082c0051d0020f4d55956088431"
+  },
+  "usage": "CC0 translation dataset; imported names and line values; cultural review pending"
+}

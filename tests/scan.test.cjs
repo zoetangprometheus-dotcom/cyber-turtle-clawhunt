@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+const S=require('../h5/scan.js'),H=require('../h5/history.js'),hex=require('../data/hexagrams.json');
+const hash='#d=32.0123456789abcdef.1';
+const first=S.resolve(hash,hex,[],new Date('2026-10-31T04:00:00.000Z'));
+assert.equal(first.kind,'device');assert(H.valid(first.record));assert.equal(first.record.hex.hexagram_id,32);
+assert.equal(first.record.hex.upper_trigram,'震');assert.equal(first.record.hex.lower_trigram,'巽');
+const again=S.resolve(hash,hex,[first.record],new Date('2026-11-01T04:00:00.000Z'));
+assert.deepEqual(again.record,first.record);
+assert.notEqual(S.resolve('#d=32.0123456789abcdef.2',hex,[]).record.id,first.record.id);
+assert.equal(S.resolve('#d=1.0123456789abcdef.1',hex,[first.record]).kind,'invalid');
+for(const value of ['#d=0.0123456789abcdef.1','#d=65.0123456789abcdef.1','#d=32.bad.1','#d=32.0123456789abcdef.0','#d=32.0123456789abcdef.4294967296',hash+'<script>',hash+'&d=1'])assert.equal(S.resolve(value,hex,[]).kind,'invalid');
+assert.equal(S.resolve('',hex,[]).kind,'none');
+for(let i=1;i<=64;i++)assert(H.valid(S.resolve('#d='+i+'.0123456789abcdef.1',hex,[]).record));
+const storage={value:null,getItem(){return this.value},setItem(k,v){this.value=v}};
+const locks={request:async(k,o,fn)=>fn()};
+(async()=>{await H.save(storage,first.record,first.record.id,locks);await H.save(storage,again.record,again.record.id,locks);assert.equal(H.read(storage).records.length,1);console.log('PASS: 64 device entries, same-scan dedupe, immutable date, conflicting/malformed link rejection');})();

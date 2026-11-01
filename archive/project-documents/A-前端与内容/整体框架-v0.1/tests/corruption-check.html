@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><title>历史容错本机测试</title>
+<h1>历史容错本机测试</h1><p>仅在专用本机测试 origin 使用。在现有记录后追加一个缺少 answer 的测试对象，保留全部已有数据。</p>
+<button id="seed">追加损坏测试记录</button><p id="status" role="status"></p><a href="../h5/">打开前端验证</a>
+<script src="../h5/history.js"></script><script>
+document.querySelector('#seed').onclick=async()=>{
+ if(!['localhost','127.0.0.1'].includes(location.hostname)){document.querySelector('#status').textContent='只允许本机测试';return;}
+ await navigator.locks.request(TurtleHistory.KEY+'-write',{mode:'exclusive'},()=>{
+ const raw=JSON.parse(localStorage.getItem(TurtleHistory.KEY));
+ if(!raw?.records?.length)throw Error('先打开演示页创建测试记录');
+ const bad=structuredClone(raw.records[0]);bad.id='corrupt-test-fixture';bad.questions=[{}];
+ if(!raw.records.some(x=>x.id===bad.id))raw.records.push(bad);
+ localStorage.setItem(TurtleHistory.KEY,JSON.stringify(raw));
+ });document.querySelector('#status').textContent='已追加测试坏记录，原有完整记录保留';
+};
+</script>

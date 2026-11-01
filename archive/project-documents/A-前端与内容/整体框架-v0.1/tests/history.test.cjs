@@ -1,0 +1,32 @@
+const assert=require('node:assert/strict');
+const H=require('../h5/history.js');
+const clone=x=>JSON.parse(JSON.stringify(x));
+const fixture=id=>({id,scanned_at:'2026-10-31T01:00:00.000Z',day:'2026-10-31',hex:{hexagram_id:1,name_zh:'乾',upper_trigram:'乾',lower_trigram:'乾',lines_bottom_to_top:[1,1,1,1,1,1]},base:{title:'原签',message:'原纸签',action:'一步'},web:{title:'原签',meaning:'含义',reflection:'长解读',action:'一步'},deep:{},questions:[],selected:''});
+const question=id=>({id,question:id,created_at:'2026-10-31T02:00:00.000Z',answer:{meaning:'含义',reflection:'启发',action:'一步'}});
+const content={title:'主题',meaning:'含义',reflection:'启发',action:'一步'};
+const memory=new Map(),storage={getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)};
+// Deterministic lock double models exclusive scheduling; browser tests verify native Web Locks.
+let queue=Promise.resolve();const locks={request:(_name,options,fn)=>{assert.equal(options.mode,'exclusive');const next=queue.then(fn);queue=next.catch(()=>{});return next;}};
+(async()=>{
+ assert.equal(H.read(storage).records.length,0);
+ const a=fixture('first');assert.equal(H.valid(a),true);
+ await H.save(storage,a,'first',locks);await H.save(storage,a,'first',locks);assert.equal(H.read(storage).records.length,1);
+ const tabA=clone(a),tabB=clone(a);tabA.questions.push(question('A'));tabB.questions.push(question('B'));tabA.deep.today=content;tabB.deep.career=content;
+ await Promise.all([H.save(storage,tabA,'first',locks),H.save(storage,tabB,'first',locks)]);
+ let saved=H.read(storage).records[0];assert.deepEqual(saved.questions.map(q=>q.id),['A','B']);assert.deepEqual(Object.keys(saved.deep).sort(),['career','today']);
+ const stale=clone(tabA);stale.base.message='stale changed paper';stale.web.reflection='stale changed web';stale.deep.today={...content,title:'overwrite'};
+ await H.save(storage,stale,'first',locks);saved=H.read(storage).records[0];assert.equal(saved.base.message,'原纸签');assert.equal(saved.web.reflection,'长解读');assert.equal(saved.deep.today.title,'主题');assert.equal(saved.questions.length,2);
+ await H.save(storage,fixture('second'),'second',locks);assert.equal(H.read(storage).records.length,2);
+ const invalids=[{...a,id:'bad-question',questions:[{}]},{...a,id:'bad-answer',questions:[{...question('q'),answer:null}]},{...a,id:'bad-day',day:'2026-02-30'},{...a,id:'bad-time',scanned_at:'not-a-date'},{...a,id:'bad-lines',hex:{...a.hex,lines_bottom_to_top:[2,1,1,1,1,1]}},{...a,id:'bad-deep',deep:{today:null}},{...a,id:'bad-base',base:{message:'only'}}];
+ for(const invalid of invalids)assert.equal(H.valid(invalid),false,invalid.id);
+ memory.set(H.KEY,JSON.stringify({version:1,active_id:'bad-question',records:[a,...invalids]}));
+ let read=H.read(storage);assert.equal(read.error,undefined);assert.equal(read.records.length,1);assert.equal(read.quarantined.length,invalids.length);assert.equal(read.active_id,null);assert.ok(read.warning);
+ await H.save(storage,fixture('new'),'new',locks);read=H.read(storage);assert.equal(read.records.length,2);assert.deepEqual(read.quarantined,invalids);
+ await H.save(storage,a,'first',locks);assert.equal(H.read(storage).quarantined.length,invalids.length,'quarantine does not duplicate on repeated saves');
+ const before=memory.get(H.KEY);assert.ok((await H.save(storage,invalids[0],'bad',locks)).error);assert.equal(memory.get(H.KEY),before);
+ memory.set(H.KEY,'broken JSON');assert.ok(H.read(storage).error);assert.ok((await H.save(storage,a,'first',locks)).error);assert.equal(memory.get(H.KEY),'broken JSON');
+ memory.clear();assert.ok((await H.save(storage,a,'first',null)).error);assert.equal(memory.size,0,'no unlocked write fallback');
+ assert.ok((await H.save({getItem:()=>null,setItem:()=>{throw Error('quota');}},a,'first',locks)).error);
+ assert.deepEqual(H.monthDays(2024,1),{offset:3,count:29});assert.equal(H.monthDays(2026,1).count,28);assert.equal(H.dayKey(new Date(2026,9,31)),'2026-10-31');
+ console.log('PASS: serialized stale writes, question/theme union, immutable snapshots, refresh dedupe, nested validation, isolated raw quarantine, malformed envelope, denied storage/locks, calendar dates.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

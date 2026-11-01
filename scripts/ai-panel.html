@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>赛博龟壳 · AI 配置</title>
+<style nonce="__NONCE__">
+:root{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:#222724;background:#f7f8fa;font-size:15px}*{box-sizing:border-box}body{margin:0}main{max-width:1040px;margin:48px auto;padding:0 24px}.eyebrow{font-size:12px;letter-spacing:.16em;color:#557292}h1{font-size:30px;letter-spacing:.03em;margin:10px 0}p{line-height:1.7;color:#66716f}header{margin-bottom:28px}.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:24px}.panel{background:white;border:1px solid #e3e7eb;border-radius:20px;padding:28px;box-shadow:0 8px 28px #16233406;animation:enter .4s ease both}.panel:nth-child(2){animation-delay:.08s}h2{font-size:18px;margin:0 0 24px}label.field{display:block;margin:19px 0 7px;font-weight:500}input:not([type=checkbox]),select{width:100%;border:1px solid #d7dfe7;border-radius:10px;padding:12px;font:inherit;background:#fff;transition:border-color .2s,box-shadow .2s}input:focus,select:focus{outline:none;border-color:#376fe8;box-shadow:0 0 0 3px #376fe818}.hint{font-size:12px;margin:7px 0;color:#7a838c}.check{display:flex;gap:10px;align-items:center;margin:15px 0;font-size:14px}input[type=checkbox]{accent-color:#356bd8}button{border:1px solid #dce3eb;border-radius:10px;padding:11px 16px;background:white;font:inherit;cursor:pointer;transition:transform .15s,background .2s,opacity .2s}button:hover{transform:translateY(-1px);background:#f1f5fb}button:active{transform:scale(.97)}button.primary{color:white;background:#3267d4;border-color:#3267d4}button:disabled{opacity:.5;cursor:wait;transform:none}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.message{min-height:44px;margin-top:15px;font-size:13px;line-height:1.7;color:#315c9b;transition:opacity .18s}.message.error{color:#a63434}.ticket{border:1px solid #e6e7e3;background:#fff;max-width:290px;min-height:160px;margin:0 auto;transition:opacity .2s,transform .2s}.ticket.updating{opacity:.3;transform:translateY(4px)}#receiptImage{display:block;width:100%;height:auto}.status{border-top:1px solid #edf0f3;margin-top:22px;padding-top:17px;font-size:13px;line-height:1.8;color:#5d6b7a}.status p{font-size:12px;margin:6px 0}.tag{color:#3267d4;font-size:12px}footer{font-size:12px;line-height:1.8;color:#7d8790;margin-top:24px}@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}@media(max-width:720px){main{margin:26px auto;padding:0 16px}.grid{grid-template-columns:1fr}.panel{padding:22px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head><body><main>
+<header><div class="eyebrow">CYBER TURTLE · LOCAL SETTINGS</div><h1>把接口接进这张签</h1><p>在这台 Mac 上配置 AI 解读，起卦后生成短签并打印</p></header>
+<div class="grid"><section class="panel"><h2>AI 接口</h2><form id="configForm">
+<label class="field" for="baseUrl">Base URL</label><input id="baseUrl" type="url" placeholder="https://你的服务地址/v1" required autocomplete="off"><p class="hint">支持 Chat Completions 兼容接口，自动补齐 /chat/completions</p>
+<label class="field" for="model">模型 ID</label><input id="model" placeholder="填写服务商提供的模型名称" required autocomplete="off">
+<label class="field" for="apiKey">API Key</label><input id="apiKey" type="password" placeholder="只在这里填写，不需要发到聊天" autocomplete="new-password"><p class="hint" id="keyStatus">尚未保存密钥</p>
+<label class="check"><input id="clearKey" type="checkbox">清除已保存的 Key</label>
+<label class="check"><input id="jsonMode" type="checkbox" checked>使用 JSON 输出模式</label>
+<label class="check"><input id="enabled" type="checkbox" checked>启用 AI 纸签</label>
+<p class="hint">开启后生成失败不会打印演示内容；关闭时保留原来的卦象联调样张</p>
+<div class="actions"><button class="primary" type="submit">保存配置</button><button type="button" id="test">测试连接并预览</button></div>
+<div id="notice" class="message" role="status" aria-live="polite">填写后先保存，再测试连接</div>
+</form><div class="status"><span class="tag">设备最近一签</span><div id="job">正在读取</div><button type="button" id="showLast" hidden>查看这一签内容</button><p>USB 已发送不等于已检测到出纸；需保持电脑中转程序运行</p></div>
+<footer>配置保存在项目 .local 内，密钥文件仅当前账户可读写，不进入 GitHub。项目位于 iCloud 时，配置可能随文件夹同步。窗口不回显已保存的 Key，也不存入浏览器 localStorage。</footer>
+</section><section class="panel"><h2>纸签预览 <span id="previewKind" class="tag">版式示例</span></h2>
+<label class="field" for="hexSelect">测试卦象</label><select id="hexSelect"><option value="1">1 · 乾</option></select><p class="hint">测试会调用一次已保存的接口，不会实际打印</p>
+<article class="ticket" id="ticket"><img id="receiptImage" alt="正在生成纸签预览"></article>
+<p class="hint">预览与实际打印使用同一张 384 点黑白图，按 58mm 纸张排版</p>
+<p class="hint">AI 生成后为卦名的现代创作，不冒充经典释义。屏幕扫码页目前仍是同卦演示，不包含本机生成的长解读。</p>
+</section></div></main>
+<script nonce="__NONCE__">
+const $=id=>document.getElementById(id), token='__NONCE__';let dirty=false,lastJob=null,busy=false;
+async function api(path,data){const options=data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json','X-Panel-Token':token},body:JSON.stringify(data)};const r=await fetch(path,options);const value=await r.json();if(!r.ok)throw Error(value.error||'请求失败');return value}
+function notice(text,error=false){$('notice').textContent=text;$('notice').classList.toggle('error',error)}
+function lock(value){busy=value;document.querySelectorAll('#configForm button,#configForm input,#hexSelect').forEach(el=>el.disabled=value)}
+function keyStatus(c){$('keyStatus').textContent=c.has_key?'已保存 Key，留空可保留；更改接口地址时需重新填写':'尚未保存密钥'}
+let previewVersion=0;
+async function draw(hex,base,kind){const version=++previewVersion,paper=$('ticket');paper.classList.add('updating');try{const r=await api('/api/preview',{hexagram_id:hex.hexagram_id??hex.id,base,origin:kind==='版式示例'?'sample':'ai'});const image=new Image();image.src=r.image;await image.decode();if(version!==previewVersion)return;$('receiptImage').src=r.image;$('receiptImage').alt=`${hex.name_zh}卦纸签。${base.title}。${base.message} 今日一小步：${base.action}`;$('previewKind').textContent=kind}finally{if(version===previewVersion)paper.classList.remove('updating')}}
+for(const el of document.querySelectorAll('#configForm input'))el.addEventListener('input',()=>{dirty=true});
+$('configForm').addEventListener('submit',async event=>{event.preventDefault();lock(true);try{const c=await api('/api/config',{base_url:$('baseUrl').value,model:$('model').value,api_key:$('apiKey').value,clear_key:$('clearKey').checked,enabled:$('enabled').checked,json_mode:$('jsonMode').checked});$('apiKey').value='';$('clearKey').checked=false;dirty=false;keyStatus(c);notice('配置已保存，新起卦将使用此设置。可以测试连接。')}catch(e){notice(e.message,true)}finally{lock(false)}});
+$('test').addEventListener('click',async()=>{if(dirty){notice('请先保存修改，再测试连接',true);return}lock(true);notice('正在请求模型并校验短签，最长约 45 秒');try{const r=await api('/api/test',{hexagram_id:Number($('hexSelect').value)});await draw(r.hexagram,r.base,'真实 AI 测试');notice('接口调用和签文校验通过，没有发送到打印机')}catch(e){notice(e.message,true)}finally{lock(false)}});
+const labels={generating:'正在生成短签',generation_failed:'生成失败，未打印',attempting:'正在发送，出纸待确认',usb_sent:'USB 已发送，出纸待确认',uncertain:'打印结果不确定，请先检查纸张',superseded:'设备已换卦，旧结果未打印'};
+async function refresh(){try{const r=await api('/api/status');lastJob=r.job;$('job').textContent=r.job?`第 ${r.job.hexagram} 卦 ${r.job.hexagram_name} · ${labels[r.job.status]||r.job.status}${r.job.error?' · '+r.job.error:''}`:'暂无设备打印记录';$('showLast').hidden=!r.job?.base}catch(e){$('job').textContent=e.message}}
+$('showLast').addEventListener('click',async()=>{try{if(lastJob?.base){const h=await fetchHex(lastJob.hexagram);await draw(h,lastJob.base,'设备 AI 签文')}}catch(e){notice(e.message,true)}});
+let hexes=[];async function fetchHex(id){return hexes.find(h=>h.id===id)}
+async function init(){try{const c=await api('/api/config');$('baseUrl').value=c.base_url||'';$('model').value=c.model||'';$('enabled').checked=c.model?c.enabled:true;$('jsonMode').checked=c.json_mode!==false;keyStatus(c);const list=await api('/api/hexagrams');hexes=list;$('hexSelect').replaceChildren(...list.map(h=>{const el=document.createElement('option');el.value=h.id;el.textContent=`${h.id} · ${h.name}`;return el}));const sample=await api('/api/sample');await draw(sample.hexagram,sample.base,'版式示例');await refresh()}catch(e){notice(e.message,true)}}
+init();setInterval(refresh,3000);
+</script></body></html>
